@@ -267,13 +267,29 @@ async function deleteProduct(id){if(!confirm('Hapus produk ini?'))return;try{if(
 function closeModal(){document.getElementById('overlay').classList.remove('show')}function val(id){return document.getElementById(id).value.trim()}
 function escapeHtml(s){return String(s??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m]))}function escapeAttr(s){return escapeHtml(s)}
 async function boot(){
-  if(SUPABASE_READY){
-    await loadProducts();
-    const {data}=await sb.auth.getSession(); currentUser=data.session?.user||null;
-    adminVerified=false;
-    sb.auth.onAuthStateChange((_event,session)=>{currentUser=session?.user||null; if(!session)adminVerified=false});
-  }
+  // Tampilkan halaman utama terlebih dahulu agar website tidak putih
+  // ketika koneksi Supabase sedang lambat atau gagal.
   showHome();
+
+  if(SUPABASE_READY){
+    try{
+      await loadProducts();
+      // Render ulang setelah produk dari Supabase selesai dimuat.
+      showHome();
+    }catch(e){
+      console.error('Gagal memuat produk saat boot:',e);
+      // Halaman tetap tampil menggunakan data lokal/seed.
+    }
+    try{
+      const {data}=await sb.auth.getSession();
+      currentUser=data.session?.user||null;
+      adminVerified=false;
+      sb.auth.onAuthStateChange((_event,session)=>{
+        currentUser=session?.user||null;
+        if(!session)adminVerified=false;
+      });
+    }catch(e){console.error('Gagal memeriksa sesi admin:',e)}
+  }
 }
 boot();
 </script>
