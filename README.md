@@ -1,2 +1,299 @@
-# nebo-store
-affiliate website
+#nebostore
+<!doctype html>
+<html lang="id"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>NEBO STORE — Fashion Discovery</title>
+<style>
+:root{--black:#080808;--gray:#f3f3f3;--line:#dedede;--muted:#777}
+*{box-sizing:border-box}body{margin:0;color:var(--black);font-family:Arial,Helvetica,sans-serif;background:#fff}
+button,input,textarea,select{font:inherit}button{cursor:pointer}
+header{height:72px;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;padding:0 5vw;position:sticky;top:0;background:#fff;z-index:20}
+.logo{display:inline-block;height:auto;width:auto;font-size:28px;font-weight:900;letter-spacing:4px;line-height:1;color:#111;text-decoration:none}nav{display:flex;gap:25px}nav button{background:none;border:0;font-size:11px;font-weight:700;letter-spacing:.14em}
+.hero{padding:90px 5vw 75px;border-bottom:1px solid var(--line);display:grid;grid-template-columns:1.2fr .8fr;gap:50px;align-items:end}
+.kicker,.eyebrow{font-size:10px;letter-spacing:.2em;font-weight:700;color:#666;margin-bottom:20px}.hero h1{font-size:clamp(50px,8vw,115px);line-height:.84;letter-spacing:-.075em;margin:0}
+.hero-copy{max-width:430px;color:#555;line-height:1.65;font-size:14px}
+.btn{border:1px solid var(--black);background:var(--black);color:#fff;padding:14px 19px;font-size:10px;font-weight:700;letter-spacing:.14em}
+.section{padding:55px 5vw}.topline{display:flex;justify-content:space-between;align-items:center;margin-bottom:25px;gap:20px}
+h2{font-size:30px;letter-spacing:-.05em;margin:0}.search{width:100%;border:0;border-bottom:1px solid #111;padding:14px 0;margin-bottom:25px;outline:0}
+.filters{display:flex;gap:7px;flex-wrap:wrap}.filter{background:#fff;border:1px solid #bbb;padding:9px 13px;font-size:9px;font-weight:700;letter-spacing:.12em}.filter.active{background:#111;color:#fff;border-color:#111}
+.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px}.card{min-width:0}.pic{aspect-ratio:4/5;background:#f0f0f0;display:flex;align-items:flex-end;justify-content:space-between;padding:11px}.tag{background:#fff;padding:7px;font-size:8px;font-weight:700;letter-spacing:.12em}.pictext{font-size:8px;letter-spacing:.1em;color:#999}
+.info{padding:14px 0}.type{font-size:8px;letter-spacing:.14em;color:#777;font-weight:700}.info h3{font-size:15px;margin:7px 0 14px}.row{display:flex;justify-content:space-between;align-items:center;gap:10px}.price{font-weight:700;font-size:13px}.view{border:0;background:none;font-size:9px;font-weight:700;letter-spacing:.1em}
+footer{background:#080808;color:#fff;padding:50px 5vw;display:flex;justify-content:space-between;align-items:end;gap:30px}footer img{height:58px;filter:invert(1)}footer p{color:#aaa;font-size:10px;line-height:1.6;max-width:320px}
+.overlay{position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:50;display:none}.modal{background:#fff;width:min(620px,92vw);max-height:90vh;overflow:auto;margin:5vh auto;padding:28px}.overlay.show{display:block}
+.modal-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:25px}.close{border:0;background:none;font-size:24px}.field{margin-bottom:15px}.field label{display:block;font-size:9px;letter-spacing:.12em;font-weight:700;margin-bottom:7px}.field input,.field textarea,.field select{width:100%;border:1px solid #ccc;padding:11px;outline:0}.field textarea{min-height:85px;resize:vertical}.admin-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.admin-table{width:100%;border-collapse:collapse;font-size:11px}.admin-table th,.admin-table td{border-bottom:1px solid #ddd;text-align:left;padding:13px 8px}.admin-table th{font-size:9px;letter-spacing:.1em}.small{padding:8px 10px;font-size:9px;background:#111;color:#fff;border:0}.small.delete{background:#fff;color:#111;border:1px solid #111}
+.detail{display:grid;grid-template-columns:1fr 1fr;gap:35px}.detail-photo{background:#f1f1f1;min-height:480px;display:flex;align-items:center;justify-content:center;color:#aaa;font-size:11px}.detail h1{font-size:42px;letter-spacing:-.06em;margin:0 0 12px}.desc{color:#666;line-height:1.7;font-size:14px;margin:20px 0 30px}
+@media(max-width:850px){.grid{grid-template-columns:repeat(2,1fr)}.hero,.detail{grid-template-columns:1fr}.hero{padding:65px 20px}.section{padding:40px 20px}header{padding:0 20px}nav{gap:8px}.detail-photo{min-height:350px}}
+@media(max-width:520px){.hero h1{font-size:58px}.topline{align-items:flex-start;flex-direction:column}footer{flex-direction:column;align-items:flex-start}}
+
+/* NEBO v4 enhancements */
+.featured-section{padding-top:10px}.featured-head{display:flex;justify-content:space-between;align-items:end;margin-bottom:18px}.featured-label{font-size:9px;letter-spacing:.16em;font-weight:700}.featured-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}.featured-card{position:relative}.featured-badge{position:absolute;top:10px;left:10px;background:#111;color:#fff;padding:7px 9px;font-size:8px;letter-spacing:.12em;font-weight:700;z-index:2}.controlbar{display:flex;gap:10px;flex-wrap:wrap;margin:14px 0 22px}.controlbar .search{flex:1;min-width:220px;margin:0}.controlbar select{border:1px solid #ccc;padding:11px;background:#fff;font-size:10px;min-width:150px}.admin-toolbar{display:flex;gap:10px;flex-wrap:wrap;margin:22px 0}.admin-toolbar input,.admin-toolbar select{border:1px solid #ccc;padding:11px;background:#fff;font-size:10px}.admin-toolbar input{flex:1;min-width:200px}.stat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:25px 0}.stat{border:1px solid #ddd;padding:18px}.stat small{display:block;font-size:8px;letter-spacing:.12em;color:#777}.stat strong{display:block;font-size:24px;margin-top:6px}.featured-toggle{display:flex;align-items:center;gap:8px;font-size:9px;font-weight:700;margin:12px 0}.featured-toggle input{width:auto}.admin-product{display:flex;align-items:center;gap:10px}.admin-thumb{width:42px;height:52px;background:#f1f1f1;object-fit:cover;flex:none}.badge-on{display:inline-block;background:#111;color:#fff;padding:5px 7px;font-size:8px}.badge-off{display:inline-block;background:#eee;color:#666;padding:5px 7px;font-size:8px}
+@media(max-width:850px){.featured-grid{grid-template-columns:repeat(2,1fr)}.stat-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:520px){.featured-grid{grid-template-columns:1fr}.stat-grid{grid-template-columns:1fr}}
+.login-section{min-height:55vh;display:flex;align-items:center;justify-content:center}.login-card{width:min(430px,100%);border:1px solid #ddd;padding:32px;background:#fff}.login-card h2{margin:8px 0 10px}.login-card .btn{width:100%;margin-top:10px}</style>
+<script>
+(function () {
+  function formatRupiahValue(value) {
+    const digits = String(value ?? '').replace(/\D/g, '');
+    if (!digits) return '';
+    return 'Rp' + Number(digits).toLocaleString('id-ID');
+  }
+
+  function attachPriceFormatter() {
+    const candidates = Array.from(document.querySelectorAll(
+      'input, textarea, [contenteditable="true"]'
+    ));
+
+    candidates.forEach(function (el) {
+      if (el.dataset.rupiahFormatterAttached) return;
+
+      const label = el.closest('.field')?.querySelector('label')?.textContent || '';
+      const hint = (
+        (el.getAttribute('name') || '') + ' ' +
+        (el.getAttribute('id') || '') + ' ' +
+        (el.getAttribute('placeholder') || '') + ' ' + label
+      ).toLowerCase();
+
+      if (!/(harga|price)/.test(hint)) return;
+
+      el.dataset.rupiahFormatterAttached = '1';
+
+      el.addEventListener('input', function () {
+        const raw = this.value.replace(/\D/g, '');
+        if (!raw) {
+          this.value = '';
+          return;
+        }
+        this.value = formatRupiahValue(raw);
+        try { this.setSelectionRange(this.value.length, this.value.length); } catch(e) {}
+      });
+
+      el.addEventListener('blur', function () {
+        const raw = this.value.replace(/\D/g, '');
+        this.value = raw ? formatRupiahValue(raw) : '';
+      });
+    });
+  }
+
+  // Format harga yang sudah tampil di halaman tanpa mengubah harga yang sudah berformat.
+  function formatDisplayedPrices() {
+    document.querySelectorAll('.price').forEach(function (el) {
+      const raw = el.textContent.trim();
+      if (/^Rp\s?[\d.]+$/.test(raw)) return;
+      const digits = raw.replace(/\D/g, '');
+      if (digits) el.textContent = formatRupiahValue(digits);
+    });
+  }
+
+  document.addEventListener('DOMContentLoaded', function () {
+    attachPriceFormatter();
+    formatDisplayedPrices();
+
+    const observer = new MutationObserver(function () {
+      attachPriceFormatter();
+      formatDisplayedPrices();
+    });
+    observer.observe(document.body, { childList: true, subtree: true });
+  });
+
+  // Fungsi global supaya kode toko juga bisa memformat harga sebelum menyimpan.
+  window.formatRupiah = formatRupiahValue;
+})();
+</script>
+</head><body>
+<header><a href="#" onclick="showHome();return false"><span class="logo">NEBO</span></a>
+<nav><button onclick="showHome()">SHOP</button><button onclick="showAdmin()">ADMIN</button></nav></header>
+<main id="app"></main><div class="overlay" id="overlay"><div class="modal" id="modal"></div></div>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+const SUPABASE_URL = "https://tpfqhucyxbyybrsjbssx.supabase.co";
+const SUPABASE_KEY = "sb_publishable_EZT11Ad3RMM1KHFSE3Gw_w_qjqSi919";
+const SUPABASE_READY = SUPABASE_URL.startsWith("https://") && !SUPABASE_URL.includes("PASTE_") && SUPABASE_KEY && !SUPABASE_KEY.includes("PASTE_");
+const sb = SUPABASE_READY ? window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY) : null;
+let currentUser = null;
+
+const seed=[{"id": 1, "name": "Oversized Basic Tee", "price": "Rp59.900", "category": "Men", "type": "T-Shirt", "description": "Basic oversized tee dengan potongan clean untuk daily outfit.", "image": "", "link": "https://example.com/product-1", "clicks": 24, "active": true}, {"id": 2, "name": "Knit Cardigan Minimal", "price": "Rp89.000", "category": "Women", "type": "Outerwear", "description": "Cardigan minimal dengan look clean dan versatile.", "image": "", "link": "https://example.com/product-2", "clicks": 41, "active": true}, {"id": 3, "name": "Wide Leg Pants", "price": "Rp99.000", "category": "Women", "type": "Pants", "description": "Celana wide leg untuk tampilan relaxed dan modern.", "image": "", "link": "https://example.com/product-3", "clicks": 67, "active": true}, {"id": 4, "name": "Classic Sneakers", "price": "Rp129.000", "category": "Unisex", "type": "Shoes", "description": "Sneakers simpel yang mudah dipadukan dengan berbagai outfit.", "image": "", "link": "https://example.com/product-4", "clicks": 53, "active": true}];let products=JSON.parse(localStorage.getItem('nebo_products')||'null')||seed;
+let category='All',query='',shopSort='featured';
+let adminQuery='',adminCategory='All',adminStatus='All',adminSort='newest';
+let adminVerified=false;
+let adminCheckPromise=null;
+function save(){localStorage.setItem('nebo_products',JSON.stringify(products))}
+products=products.map((p,i)=>({...p,featured:!!p.featured,createdAt:p.createdAt||p.id||Date.now()+i}));
+
+function dbRow(p){
+  const row={id:p.id,name:p.name,price:p.price,category:p.category,type:p.type,description:p.description||'',image:p.image||'',link:p.link||'',clicks:Number(p.clicks||0),active:p.active!==false,featured:!!p.featured};
+  if(p.createdAt) row.created_at=new Date(p.createdAt).toISOString();
+  return row;
+}
+function fromDb(r){return {...r,createdAt:new Date(r.created_at).getTime()}}
+async function loadProducts(){
+  if(!SUPABASE_READY){return}
+  const {data,error}=await sb.from('products').select('*').order('created_at',{ascending:false});
+  if(error){console.error(error); alert('Gagal memuat database Supabase: '+error.message); return}
+  products=(data||[]).map(fromDb);
+}
+async function saveProductDb(p){
+  const row=dbRow(p);
+  const {data,error}=await sb.from('products').upsert(row).select().single();
+  if(error) throw error; return fromDb(data);
+}
+async function deleteProductDb(id){const {error}=await sb.from('products').delete().eq('id',id);if(error)throw error}
+async function incrementClickDb(id){
+  const {data,error}=await sb.rpc('increment_product_click',{product_id:id});
+  if(error) console.error(error);
+}
+async function ensureAdmin(){
+  if(!SUPABASE_READY)return false;
+  if(adminVerified && currentUser)return true;
+  if(adminCheckPromise)return adminCheckPromise;
+  adminCheckPromise=(async()=>{
+    const {data}=await sb.auth.getSession(); currentUser=data.session?.user||null;
+    if(!currentUser){adminVerified=false;return false}
+    const {data:profile,error}=await sb.from('profiles').select('role').eq('id',currentUser.id).maybeSingle();
+    if(error||profile?.role!=='admin'){adminVerified=false;alert('Akun ini belum memiliki akses admin.'); await sb.auth.signOut(); currentUser=null; return false}
+    adminVerified=true; return true;
+  })();
+  try{return await adminCheckPromise}finally{adminCheckPromise=null}
+}
+async function logout(){if(sb) await sb.auth.signOut(); currentUser=null; showHome()}
+
+function priceNumber(p){return Number(String(p.price||'').replace(/[^0-9]/g,''))||0}
+function activeProducts(){return products.filter(p=>p.active)}
+function showHome(){category='All';query='';shopSort='featured';renderHome()}
+function renderHome(){
+document.getElementById('app').innerHTML=`<section class="hero"><div><div class="kicker">NEBO STORE / FASHION DISCOVERY</div><h1>FASHION,<br>CURATED.</h1></div><div><p class="hero-copy">Temukan pakaian, sepatu, dan aksesoris pilihan untuk pria dan wanita. Pilih produk yang kamu suka, lalu lanjutkan ke toko melalui link affiliate.</p><button class="btn" onclick="document.getElementById('products').scrollIntoView()">EXPLORE PRODUCTS →</button></div></section>
+<section class="section featured-section" id="featured"><div class="featured-head"><div><div class="featured-label">BEST SELLERS / MOST RECOMMENDED</div><h2 style="margin-top:7px">Produk Terbaik</h2></div><button class="view" onclick="document.getElementById('products').scrollIntoView()">VIEW ALL →</button></div><div class="featured-grid" id="featuredGrid"></div></section>
+<section class="section" id="products"><div class="topline"><h2>Selected Finds</h2><div class="filters">${['All',...Array.from(new Set(activeProducts().map(p=>p.category).filter(Boolean)))].map(c=>`<button class="filter ${category===c?'active':''}" onclick="setCategory('${escapeAttr(c)}')">${escapeHtml(c).toUpperCase()}</button>`).join('')}</div></div>
+<div class="controlbar"><input class="search" id="search" placeholder="Cari produk..." value="${escapeHtml(query)}" oninput="query=this.value;drawProducts()"><select onchange="shopSort=this.value;drawProducts()"><option value="featured" ${shopSort==='featured'?'selected':''}>Featured dulu</option><option value="newest" ${shopSort==='newest'?'selected':''}>Terbaru</option><option value="popular" ${shopSort==='popular'?'selected':''}>Paling populer</option><option value="priceLow" ${shopSort==='priceLow'?'selected':''}>Harga terendah</option><option value="priceHigh" ${shopSort==='priceHigh'?'selected':''}>Harga tertinggi</option><option value="name" ${shopSort==='name'?'selected':''}>Nama A–Z</option></select></div><div class="grid" id="productGrid"></div></section>
+<footer><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAACAAAAAgACAYAAACyp9MwAAAQAElEQVR4Aey9iXqsuBKlq+Xq+/7P23224cYvERAISUAOtvfgL1fGPGhAkGnvqo/5bT+flhkYecmLXJ/zNP2apyfw+fm/OWIyOSLa4KdpmqdpgBA/W18Zn9M8L5hM5/g03xqxdouv/X+K3Oq1pcvzYXPQoz43kcYx9uJc36pZ6z5//b85Itq9VqwfebdDo/4yb2se69U8ed+Jul5P9vms6dk4a/9a9ni7IOwUuH79PjMnrTHW+X5N/5tBrX+l/It9Z+s/yjlN0zxNoJxrR9/P+fNzj1+/fs2O2lbL0/TL4v+X8cv6cRzrFJ+7+lfn8/pXx+f+kXpPz9CY7538ZPvjGZz1djYHn9P/nYew/j5fCPbjFczz56Xz4nPprc7p+prWfvP0awZvWwPmd+mx7gX5V7gmWzw+I9TjcdljXD6jPt+Fzp0f1mRvmqZprzBpmqZ5mgpMXF/T1NatDhUzTVOluSLS44Zp+jVPQ0zzNE27xNM0Zd2nnbvTEuvzGSk2D5ymyc7YzxXTVHLgA2LcGT9T0" alt="NEBO STORE"><p>NEBO STORE — curated fashion finds untuk pria & wanita. Produk dapat diarahkan ke link affiliate pilihanmu.</p></footer>`;drawFeatured();drawProducts()}
+function productCard(p,featured=false){return `<article class="card featured-card">${featured?'<span class="featured-badge">FEATURED</span>':''}<div class="pic">${p.image?`<img src="${escapeAttr(p.image)}" style="width:100%;height:100%;object-fit:cover">`:'<span class="pictext">PRODUCT PHOTO</span>'}<span class="tag">${escapeHtml(p.category)}</span></div><div class="info"><div class="type">${escapeHtml(p.type)}</div><h3>${escapeHtml(p.name)}</h3><div class="row"><span class="price">${escapeHtml(p.price)}</span><button class="view" onclick="openProduct(${p.id})">VIEW PRODUCT ↗</button></div></div></article>`}
+function drawFeatured(){const list=activeProducts().slice().sort((a,b)=>Number(b.featured)-Number(a.featured)||(b.clicks||0)-(a.clicks||0)||(b.createdAt||0)-(a.createdAt||0)).slice(0,4);document.getElementById('featuredGrid').innerHTML=list.length?list.map(p=>productCard(p,true)).join(''):'<p style="color:#777">Belum ada produk.</p>'}
+function drawProducts(){let list=activeProducts().filter(p=>(category==='All'||p.category===category)&&(`${p.name} ${p.type} ${p.category} ${p.description}`.toLowerCase().includes(query.toLowerCase())));list.sort((a,b)=>{if(shopSort==='featured')return Number(b.featured)-Number(a.featured)||(b.createdAt||0)-(a.createdAt||0);if(shopSort==='popular')return (b.clicks||0)-(a.clicks||0);if(shopSort==='priceLow')return priceNumber(a)-priceNumber(b);if(shopSort==='priceHigh')return priceNumber(b)-priceNumber(a);if(shopSort==='name')return a.name.localeCompare(b.name);return (b.createdAt||0)-(a.createdAt||0)});document.getElementById('productGrid').innerHTML=list.length?list.map(p=>productCard(p)).join(''):'<p style="color:#777">Produk tidak ditemukan.</p>'}
+function setCategory(c){category=c;renderHome();document.getElementById('products').scrollIntoView()}
+function openProduct(id){const p=products.find(x=>x.id===id);if(!p)return;document.getElementById('app').innerHTML=`<section class="section"><button class="view" onclick="showHome()">← BACK TO SHOP</button><div class="detail" style="margin-top:30px"><div class="detail-photo">${p.image?`<img src="${p.image}" style="width:100%;height:100%;object-fit:cover">`:'PRODUCT PHOTO'}</div><div><div class="eyebrow">${p.category} / ${p.type}</div><h1>${escapeHtml(p.name)}</h1><strong style="font-size:20px">${escapeHtml(p.price)}</strong><p class="desc">${escapeHtml(p.description)}</p><button class="btn" onclick="affiliateClick(${p.id})">VIEW PRODUCT ↗</button></div></div></section>`}
+async function affiliateClick(id){const p=products.find(x=>x.id===id);if(!p)return;p.clicks=(p.clicks||0)+1;if(SUPABASE_READY) await incrementClickDb(id); else save();if(p.link&&!p.link.includes('example.com'))window.open(p.link,'_blank');else alert('Demo link. Ganti link affiliate produk ini melalui ADMIN.')}
+async function showLogin(){
+ document.getElementById('app').innerHTML=`<section class="section login-section"><div class="login-card"><div class="eyebrow">NEBO STORE / ADMIN</div><h2>ADMIN LOGIN</h2><p style="color:#777">Masuk menggunakan akun email Supabase yang sudah diberi role admin.</p><div class="field"><label>EMAIL</label><input id="login_email" type="email" placeholder="admin@email.com"></div><div class="field"><label>PASSWORD</label><input id="login_password" type="password" placeholder="••••••••"></div><button class="btn" onclick="loginAdmin()">LOGIN →</button><p id="login_msg" style="font-size:12px;color:#b33;margin-top:12px"></p></div></section>`
+}
+async function loginAdmin(){
+ if(!SUPABASE_READY){document.getElementById('login_msg').textContent='Isi SUPABASE_URL dan SUPABASE_KEY terlebih dahulu di file HTML.';return}
+ const email=val('login_email'),password=document.getElementById('login_password').value;
+ const msg=document.getElementById('login_msg');
+ const btn=document.querySelector('.login-card .btn');
+ if(!email||!password){msg.textContent='Email dan password wajib diisi.';return}
+ if(btn){btn.disabled=true;btn.textContent='MEMPROSES...'}
+ msg.style.color='#777';msg.textContent='Sedang masuk, tunggu sebentar...';
+ try{
+  const result=await Promise.race([
+   sb.auth.signInWithPassword({email,password}),
+   new Promise((_,reject)=>setTimeout(()=>reject(new Error('Login terlalu lama. Periksa koneksi internet dan pengaturan Supabase.')),15000))
+  ]);
+  if(result.error) throw result.error;
+  if(await ensureAdmin()){showAdmin(); loadProducts().catch(console.error)}
+ }catch(error){msg.style.color='#b33';msg.textContent=error.message||'Login gagal.';}
+ finally{if(btn){btn.disabled=false;btn.textContent='LOGIN →'}}
+}
+async function showAdmin(){
+ if(!SUPABASE_READY){showLogin();return}
+ if(!currentUser || !adminVerified){if(!(await ensureAdmin())){showLogin();return}}
+ const list=adminProducts();const featuredCount=products.filter(p=>p.featured).length;const activeCount=products.filter(p=>p.active).length;const clicks=products.reduce((n,p)=>n+(p.clicks||0),0);
+ document.getElementById('app').innerHTML=`<section class="section"><div class="topline"><div><div class="eyebrow">PRIVATE DASHBOARD</div><h2>NEBO STORE ADMIN</h2><p style="font-size:12px;color:#777">${escapeHtml(currentUser.email||'')}</p></div><div><button class="small" onclick="logout()">LOGOUT</button> <button class="btn" onclick="openAdd()">+ ADD PRODUCT</button></div></div><div class="stat-grid"><div class="stat"><small>TOTAL PRODUCTS</small><strong>${products.length}</strong></div><div class="stat"><small>ACTIVE</small><strong>${activeCount}</strong></div><div class="stat"><small>FEATURED</small><strong>${featuredCount}</strong></div><div class="stat"><small>TOTAL CLICKS</small><strong>${clicks}</strong></div></div><div class="admin-toolbar"><input placeholder="Cari produk..." value="${escapeAttr(adminQuery)}" oninput="adminQuery=this.value;showAdmin()"><select onchange="adminCategory=this.value;showAdmin()"><option>All</option>${['Men','Women','Unisex'].map(c=>`<option ${adminCategory===c?'selected':''}>${c}</option>`).join('')}</select><select onchange="adminStatus=this.value;showAdmin()"><option>All</option><option ${adminStatus==='Active'?'selected':''}>Active</option><option ${adminStatus==='Inactive'?'selected':''}>Inactive</option><option ${adminStatus==='Featured'?'selected':''}>Featured</option></select><select onchange="adminSort=this.value;showAdmin()"><option value="newest" ${adminSort==='newest'?'selected':''}>Terbaru</option><option value="oldest" ${adminSort==='oldest'?'selected':''}>Terlama</option><option value="clicks" ${adminSort==='clicks'?'selected':''}>Klik terbanyak</option><option value="priceLow" ${adminSort==='priceLow'?'selected':''}>Harga terendah</option><option value="priceHigh" ${adminSort==='priceHigh'?'selected':''}>Harga tertinggi</option><option value="name" ${adminSort==='name'?'selected':''}>Nama A–Z</option></select></div><div style="overflow:auto"><table class="admin-table"><thead><tr><th>PRODUCT</th><th>CATEGORY</th><th>PRICE</th><th>CLICKS</th><th>STATUS</th><th>FEATURED</th><th>ACTION</th></tr></thead><tbody>${list.map(p=>`<tr><td><div class="admin-product">${p.image?`<img class="admin-thumb" src="${escapeAttr(p.image)}">`:''}<strong>${escapeHtml(p.name)}</strong></div></td><td>${escapeHtml(p.category)}</td><td>${escapeHtml(p.price)}</td><td>${p.clicks||0}</td><td><span class="${p.active?'badge-on':'badge-off'}">${p.active?'ON':'OFF'}</span></td><td>${p.featured?'YES':'NO'}</td><td><button class="small" onclick="openEdit(${p.id})">EDIT</button> <button class="small delete" onclick="deleteProduct(${p.id})">DELETE</button></td></tr>`).join('')}</tbody></table></div><p style="font-size:10px;color:#888;margin-top:25px">Database: Supabase • Auth: Supabase Auth • RLS aktif.</p></section>`
+}
+function adminProducts(){let list=products.filter(p=>{const q=adminQuery.toLowerCase();const matchQ=`${p.name} ${p.type} ${p.description}`.toLowerCase().includes(q);const matchC=adminCategory==='All'||p.category===adminCategory;const matchS=adminStatus==='All'||(adminStatus==='Active'&&p.active)||(adminStatus==='Inactive'&&!p.active)||(adminStatus==='Featured'&&p.featured);return matchQ&&matchC&&matchS});list.sort((a,b)=>{if(adminSort==='clicks')return (b.clicks||0)-(a.clicks||0);if(adminSort==='priceLow')return priceNumber(a)-priceNumber(b);if(adminSort==='priceHigh')return priceNumber(b)-priceNumber(a);if(adminSort==='name')return a.name.localeCompare(b.name);if(adminSort==='oldest')return (a.createdAt||0)-(b.createdAt||0);return (b.createdAt||0)-(a.createdAt||0)});return list}
+function openAdd(){openForm(null)}
+
+function previewProductImage(event){
+  const file = event.target.files[0];
+  if(!file) return;
+  if(!file.type.startsWith('image/')){alert('Pilih file gambar yang valid.');return;}
+  const reader = new FileReader();
+  reader.onload = function(e){
+    const img = new Image();
+    img.onload = function(){
+      const max = 1200;
+      const scale = Math.min(1, max / Math.max(img.width, img.height));
+      const canvas = document.createElement('canvas');
+      canvas.width = Math.max(1, Math.round(img.width * scale));
+      canvas.height = Math.max(1, Math.round(img.height * scale));
+      const ctx = canvas.getContext('2d');
+      ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+      const compressed = canvas.toDataURL('image/jpeg', 0.78);
+      document.getElementById('f_image').value = compressed;
+      document.getElementById('image_preview').innerHTML =
+        `<img src="${compressed}" style="width:140px;height:140px;object-fit:cover;border-radius:10px;border:1px solid #ddd">`;
+    };
+    img.onerror = function(){alert('Foto tidak bisa diproses. Coba foto lain.');};
+    img.src = e.target.result;
+  };
+  reader.readAsDataURL(file);
+}
+
+function openEdit(id){openForm(products.find(p=>p.id===id))}
+function openForm(p){const x=p||{name:'',price:'',category:'Men',type:'T-Shirt',description:'',image:'',link:'',active:true,featured:false};document.getElementById('modal').innerHTML=`<div class="modal-head"><h2>${p?'EDIT':'ADD'} PRODUCT</h2><button class="close" onclick="closeModal()">×</button></div><div class="field"><label>PRODUCT NAME</label><input id="f_name" value="${escapeAttr(x.name)}"></div><div class="admin-grid"><div class="field"><label>PRICE</label><input id="f_price" placeholder="Rp89.000" value="${escapeAttr(x.price)}"></div><div class="field"><label>CATEGORY</label><select id="f_category">${['Men','Women','Unisex'].map(c=>`<option ${x.category===c?'selected':''}>${c}</option>`).join('')}</select></div></div><div class="field"><label>TYPE</label><input id="f_type" placeholder="T-Shirt / Pants / Jacket / Shoes..." value="${escapeAttr(x.type)}"></div><div class="field"><label>PRODUCT FOTO</label>
+
+<div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap">
+
+  <label
+    for="f_image_file"
+    style="display:inline-block;padding:10px 16px;background:#111;color:#fff;border-radius:8px;cursor:pointer;font-weight:700"
+  >
+    + ADD FOTO
+  </label>
+
+  <input
+    type="file"
+    id="f_image_file"
+    accept="image/*"
+    style="display:none"
+    onchange="previewProductImage(event)"
+  >
+
+  <input
+    id="f_image"
+    type="hidden"
+    value="${escapeAttr(x.image)}"
+  >
+
+</div>
+<div id="image_preview" style="margin-top:12px">
+  ${
+    x.image
+      ? `<img src="${escapeAttr(x.image)}"
+          style="width:140px;height:140px;object-fit:cover;border-radius:10px;border:1px solid #ddd">`
+      : ''
+  }
+</div></div><div class="field"><label>AFFILIATE LINK</label><input id="f_link" placeholder="Tempel link produk affiliate di sini" value="${escapeAttr(x.link)}"></div><div class="field"><label>DESCRIPTION</label><textarea id="f_desc">${escapeHtml(x.description)}</textarea></div><label class="featured-toggle"><input type="checkbox" id="f_featured" ${x.featured?'checked':''}> Jadikan Featured Product</label><label class="featured-toggle"><input type="checkbox" id="f_active" ${x.active?'checked':''}> Produk aktif / tampil di toko</label><button class="btn" onclick="saveForm(${p?p.id:'null'})">SAVE PRODUCT</button>`;document.getElementById('overlay').classList.add('show')}
+async function saveForm(id){const btn=document.querySelector('#modal .btn');if(btn){btn.disabled=true;btn.textContent='MENYIMPAN...'}const data={name:val('f_name'),price:val('f_price'),category:val('f_category'),type:val('f_type'),image:val('f_image'),link:val('f_link'),description:val('f_desc'),active:document.getElementById('f_active').checked,featured:document.getElementById('f_featured').checked};if(!data.name||!data.link){if(btn){btn.disabled=false;btn.textContent='SAVE PRODUCT'}alert('Nama produk dan link affiliate wajib diisi.');return}try{if(id===null){const p={id:Date.now(),...data,clicks:0,createdAt:Date.now()};if(SUPABASE_READY){const saved=await saveProductDb(p);products.unshift(saved)}else{products.unshift(p);save()}}else{const i=products.findIndex(p=>p.id===id);const p={...products[i],...data};if(SUPABASE_READY){const saved=await saveProductDb(p);products[i]=saved}else{products[i]=p;save()}}closeModal();showAdmin()}catch(e){alert('Gagal menyimpan: '+e.message)}}
+async function deleteProduct(id){if(!confirm('Hapus produk ini?'))return;try{if(SUPABASE_READY)await deleteProductDb(id);products=products.filter(p=>p.id!==id);if(!SUPABASE_READY)save();showAdmin()}catch(e){alert('Gagal menghapus: '+e.message)}}
+function closeModal(){document.getElementById('overlay').classList.remove('show')}function val(id){return document.getElementById(id).value.trim()}
+function escapeHtml(s){return String(s??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m]))}function escapeAttr(s){return escapeHtml(s)}
+async function boot(){
+  // Tampilkan halaman utama terlebih dahulu agar website tidak putih
+  // ketika koneksi Supabase sedang lambat atau gagal.
+  showHome();
+
+  if(SUPABASE_READY){
+    try{
+      await loadProducts();
+      // Render ulang setelah produk dari Supabase selesai dimuat.
+      showHome();
+    }catch(e){
+      console.error('Gagal memuat produk saat boot:',e);
+      // Halaman tetap tampil menggunakan data lokal/seed.
+    }
+    try{
+      const {data}=await sb.auth.getSession();
+      currentUser=data.session?.user||null;
+      adminVerified=false;
+      sb.auth.onAuthStateChange((_event,session)=>{
+        currentUser=session?.user||null;
+        if(!session)adminVerified=false;
+      });
+    }catch(e){console.error('Gagal memeriksa sesi admin:',e)}
+  }
+}
+boot();
+</script>
+</body>
+</html>
+
